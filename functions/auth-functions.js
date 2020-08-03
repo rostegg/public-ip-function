@@ -29,17 +29,3 @@ exports.getPublicIpWithAuth = functions.https.onRequest(async (req, res) => {
             res.status(403).send(ex.message);
         });
 });
-
-exports.watchHeaders = functions.https.onRequest(async (req, res) => {
-    const userId = req.query.auth;
-
-    auth(userId)
-        .then(() => {
-            const headers = JSON.stringify(req.headers, null, 2);
-            const message = `<pre>Request headers: ${headers}</pre>`;
-            return res.set({ 'Access-Control-Allow-Origin': '*' }).send(message);
-        })
-        .catch(ex => {
-            res.status(403).send(ex.message);
-        });
-});
