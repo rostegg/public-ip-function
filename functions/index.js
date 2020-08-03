@@ -1,5 +1,4 @@
 const functions = require('firebase-functions');
-const util = require('util');
 
 exports.getPublicIp = functions.https.onRequest(async (req, res) => {
     const ipAddress =
