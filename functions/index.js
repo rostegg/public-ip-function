@@ -9,3 +9,9 @@ exports.getPublicIp = functions.https.onRequest(async (req, res) => {
         countryCode: countryCode,
     });
 });
+
+exports.watchHeaders = functions.https.onRequest(async (req, res) => {
+    const headers = JSON.stringify(req.headers, null, 2);
+    const message = `<pre>Request headers: ${headers}</pre>`;
+    res.send(message);
+});
